@@ -330,6 +330,7 @@ def load_model(
     task="transcribe",
     download_root=None,
     threads=4,
+    multilingual: bool = True,
 ):
     """Load a Whisper model for inference.
     Args:
@@ -403,6 +404,8 @@ def load_model(
 
     suppress_numerals = default_asr_options["suppress_numerals"]
     del default_asr_options["suppress_numerals"]
+
+    default_asr_options["multilingual"] = multilingual
 
     default_asr_options = faster_whisper.transcribe.TranscriptionOptions(
         **default_asr_options
